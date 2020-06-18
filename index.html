@@ -8,8 +8,8 @@
 
 <body>
 <form name="js">
-<input type="button" value="�ڑ�" onclick="connect();"/> 
-<input type="button" value="�ؒf" onclick="disconnect();" /> 
+<input type="button" value="接続（せつぞく）" onclick="connect();"/> 
+<input type="button" value="切断（せつだん）" onclick="disconnect();" /> 
 </form>
 
 <script>
@@ -39,13 +39,13 @@ function connect(){
         return service.getCharacteristic(uuid["UART_SERVICE_CHARACTERISTICS"]);
     })
     .then(chara => {
-        alert("BLE connected");
+        alert("せつぞくしたよ");
         characteristic=chara;
         characteristic.startNotifications();
         characteristic.addEventListener('characteristicvaluechanged',onCharacteristicValueChanged);
     })
     .catch(error => {
-        alert("BLE error");
+        alert("せつぞくにしっぱいしました。");
     });
 }
 
@@ -63,7 +63,7 @@ function disconnect() {
         return;
     }else{
         accelerometer_device.gatt.disconnect();
-        alert("BLE disconnected");
+        alert("せつだんしたよ");
     }
 }
 
