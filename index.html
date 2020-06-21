@@ -10,7 +10,11 @@
 <form name="js">
 <input type="button" value="接続（せつぞく）" onclick="connect();"/> 
 <input type="button" value="切断（せつだん）" onclick="disconnect();" /> 
-<textarea id="msg"></textarea>
+<br />
+おくった文字:<textarea id="msg"></textarea><
+<br />
+<br />
+<input type="button" value="クリア" onclick="clear();"/> 
 </form>
 
 <script>
@@ -84,6 +88,9 @@ function send(msg) {
     .then(response => response.text())
     .then(text => { console.log(text);})
     .catch(console.error);
+}
+function clear() {
+	document.getElementById("msg").value = ""; 
 }
 
 </script>
