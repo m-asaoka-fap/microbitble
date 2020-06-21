@@ -55,7 +55,7 @@ function onCharacteristicValueChanged(e) {
         str_arr[i]=this.value.getUint8(i);
     }
     var str=String.fromCharCode.apply(null,str_arr);
-    alert("msg:"+str);
+    send(str);
 }
 
 function disconnect() {
@@ -65,6 +65,23 @@ function disconnect() {
         accelerometer_device.gatt.disconnect();
         alert("せつだんしたよ");
     }
+}
+
+function send(msg) {
+	var key = "kanazawafapmicrobit";
+	var actionType = "1";
+    var values = "type=1" + "," + "msg=" + msg;
+
+	const params = {
+    	"para": key,
+    	"type": actionType,
+		"values": values
+  	};
+	var qs = new URLSearchParams(params);
+	fetch(`https://kanazawa-fap-mb-actions.herokuapp.com/mbsender.php?${qs}`, {mode: "no-cors", method: "POST", })
+    .then(response => response.text())
+    .then(text => { console.log(text);})
+    .catch(console.error);
 }
 
 </script>
