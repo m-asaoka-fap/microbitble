@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<title></title>
+<title>えんかくそうさで文字ドカーン</title>
 </head>
 
 <body>
 <form name="js">
 <input type="button" value="接続（せつぞく）" onclick="connect();"/> 
 <input type="button" value="切断（せつだん）" onclick="disconnect();" /> 
+<textarea id="msg"></textarea>
 </form>
 
 <script>
@@ -56,6 +57,7 @@ function onCharacteristicValueChanged(e) {
     }
     var str=String.fromCharCode.apply(null,str_arr);
     send(str);
+    document.getElementById("msg").value = str; 
 }
 
 function disconnect() {
